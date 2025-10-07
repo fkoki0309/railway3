@@ -21,3 +21,11 @@ test("login success", async ({ page }) => {
   await page.getByPlaceholder('Password').fill('test123');
   await page.getByPlaceholder('login').click();
 });
+
+test("login no data",async ({page})=>{
+  await page.getByPlaceholder('Email').fill('');
+  await page.getByPlaceholder('Password').fill('');
+  await page.getByPlaceholder('login').click();
+  await expect(page.getByTestId('passwordErrorMessage')).toContainText('パスワードは6文字以上で入力してください');
+  await expect(page.getByTestId('emailErrorMessage')).toContainText('正しいメールアドレスを入力してください');
+});
