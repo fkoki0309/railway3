@@ -19,8 +19,10 @@ const Login = () => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    //TODO: 必須入力チェック
-    //Success message 追加
+    
+    setEmailError('');
+    setPasswordError('');
+
     if (!emailPattern.test(email)) {
       setEmailError('正しいメールアドレスを入力してください');
     }

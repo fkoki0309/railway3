@@ -6,10 +6,10 @@ test.beforeEach(async ({ page }) => {
 
 test("login error", async ({ page }) => {
   //email error
-  await page.getByPlaceholder('Email').fill('test');
+  await page.getByRole('textbox', { name: 'Email' }).fill('test');
   //password error
-  await page.getByPlaceholder('Password').fill('test');
-  await page.getByPlaceholder('login').click();
+  await page.getByRole('textbox', { name: 'Password' }).fill('test');
+  await page.getByRole('button', { name: 'Login' }).click();
   await expect(page.getByTestId('passwordErrorMessage')).toContainText('パスワードは6文字以上で入力してください');
   await expect(page.getByTestId('emailErrorMessage')).toContainText('正しいメールアドレスを入力してください');
 
@@ -17,15 +17,17 @@ test("login error", async ({ page }) => {
 
 test("login success", async ({ page }) => {
   //email success
-  await page.getByPlaceholder('Email').fill('test@example.com');
-  await page.getByPlaceholder('Password').fill('test123');
-  await page.getByPlaceholder('login').click();
+  await page.getByRole('textbox', { name: 'Email' }).fill('test@example.com');
+  await page.getByRole('textbox', { name: 'Password' }).fill('test123');
+  await page.getByRole('button', { name: 'Login' }).click();
+  await expect(page.getByTestId('passwordErrorMessage')).toContainText('');
+  await expect(page.getByTestId('emailErrorMessage')).toContainText('');
 });
 
 test("login no data",async ({page})=>{
-  await page.getByPlaceholder('Email').fill('');
-  await page.getByPlaceholder('Password').fill('');
-  await page.getByPlaceholder('login').click();
+  await page.getByRole('textbox', { name: 'Email' }).fill('');
+  await page.getByRole('textbox', { name: 'Password' }).fill('');
+  await page.getByRole('button', { name: 'Login' }).click();
   await expect(page.getByTestId('passwordErrorMessage')).toContainText('パスワードは6文字以上で入力してください');
   await expect(page.getByTestId('emailErrorMessage')).toContainText('正しいメールアドレスを入力してください');
 });

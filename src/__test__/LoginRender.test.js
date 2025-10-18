@@ -43,8 +43,4 @@ describe('Login Component', () => {
     expect(screen.getByTestId('submit-button')).toBeInTheDocument();
   });
 
-  test('displays email error message when emailError prop is provided', () => {
-    render(<Login />);
-    const emailInput = screen.getByTestId('email-input');
-  });
 });
