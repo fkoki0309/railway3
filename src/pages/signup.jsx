@@ -13,14 +13,9 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (!emailPattern.test(email)) {
-      setEmailError('正しいメールアドレスを入力してください', []);
+      setEmailError('正しいメールアドレスを入力してください');
     }
-
-    // Handle signup logic here, e.g., send data to the server
-    console.log('UserName:', username);
-    console.log('Email:', email);
   }
 
   return (
@@ -30,7 +25,6 @@ const SignUp = () => {
       <p placeholder="errorMessage" style={{ color: 'red' }}>{emailError}</p>
       <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
       <button placeholder='signUp' onClick={handleSubmit}>Sign Up</button>
-
     </div>
   );
 
